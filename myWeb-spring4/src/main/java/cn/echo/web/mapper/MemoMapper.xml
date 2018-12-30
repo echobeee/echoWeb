@@ -213,7 +213,7 @@
   	select 
     <include refid="Base_Column_List" />
     from memo
-    where state = 1
+    where state = 0
   </select>
   
 </mapper>

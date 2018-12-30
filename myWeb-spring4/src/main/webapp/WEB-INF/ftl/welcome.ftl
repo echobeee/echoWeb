@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>收藏夾</title>
+    <title>首页</title>
 	
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="Register">
@@ -36,9 +36,7 @@
 	<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     
-     <!-- 下拉框样式 -->
-  	<link rel="stylesheet" href=" ${request.contextPath}/styles/search.css?v1.15"/>
-    
+     
      <!--使用JS获取项目根路径-->
     <script>
         var path = "";
@@ -144,9 +142,13 @@
 		        <div>
 		        
 		    </div>
-		
+				
 		        <p style="padding-right: 37px;" class="navbar-text navbar-right"><a href="${request.contextPath}/user/logout.do">註銷</a></p>
-		        
+		        <#if (user)??>
+				 <p style="padding-right: 37px;" class="navbar-text navbar-right">${user.userNickname}</p>
+				    <#else>
+				   
+				</#if>
 		    </div>
 		    </div>
 		    </nav> 

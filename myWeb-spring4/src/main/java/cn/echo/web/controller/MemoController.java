@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
+import javax.net.ssl.ExtendedSSLSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.quartz.Scheduler;
@@ -59,10 +60,16 @@ public class MemoController extends BaseController {
 	
 	@PostConstruct
 	public void startJobs() {
+		 QuartzManager.startJobs(scheduler);
 		for(Memo memo : memoService.findAllMemos()) {
-			QuartzManager.newJob(scheduler, MemoJob.class, memo);
+			if (memo.getSendTime().before(new Date())) {
+				memo.setState(1);
+				memoService.updateByPrimaryKey(memo);
+			} else {
+				System.out.println(memo.getSendTime() + " - " + QuartzManager.newJob(scheduler, MemoJob.class, memo).toString());
+			}
+			
 		}
-		names = QuartzManager.startJobs(scheduler);
 		
 	}
 	
@@ -109,8 +116,7 @@ public class MemoController extends BaseController {
 	@RequestMapping("/myMonthMemos")
 	@ResponseBody
 	public List<Memo> findMemosByUserIdWithDate(String userId, String date) {
-		for(String name : names)
-			System.out.println(name);
+
 		return memoService.findMemoByUseridWithDate(userId, date);
 	}
 	
@@ -119,7 +125,7 @@ public class MemoController extends BaseController {
 	public String modifyMemo(Memo memo) {
 		memo.setState(0);
 		memoService.updateByPrimaryKey(memo);
-		
+		getAllJobs();
 		// 获取完整的memo记录
 		return QuartzManager.modifyJob(scheduler, memoService.selectByPrimaryKey(memo.getMemoId())).toString();
 	}

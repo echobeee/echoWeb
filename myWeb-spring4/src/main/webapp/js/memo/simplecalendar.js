@@ -250,7 +250,7 @@ var calendar = {
                         var h2 = $("<h2 class='title'></h2>").text("備忘錄");
                         var p = $("<p class='date' style='margin: 10px 0 10px;'></p>").text(response[i].sendTime);
                         var pMemo = $("<p></p>").text(response[i].memoContent);
-                        var label1 = $("<label><span class='modify' memoId = '" + response[i].memoId + "'>修改</span><span class='delete' memoId = '" + response[i].memoId + "'>刪除</span></label>");
+                        var label1 = $("<label><span class='modify' state='"+ response[i].state +"' memoId = '" + response[i].memoId + "'>修改</span><span class='delete' memoId = '" + response[i].memoId + "'>刪除</span></label>");
                         var div = $("<div class='day-event' date-month=\""+_month+ "\" date-day=\""+ _day +"\"></div>");
                         div.append(a,h2,p,pMemo,label1);
                         $('.list').append(div);
@@ -415,6 +415,10 @@ $(document).ready(function() {
     })
 
     $(document).on("click", '.modify', function() {
+    	if($(this).attr('state') == "1") {
+    		sweetAlert("過去的備忘錄不能再修改啦，請重新添加一個吧!");
+    		return ;
+    	}
         $.ajax({
             url : path + '/memo/getMemo',
             type : 'post',

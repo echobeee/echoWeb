@@ -28,6 +28,11 @@ canvas {
 	height: 67%!important;
 }
 
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: none;
+}
+
 
 .suggest {
 	margin-top: -6px;

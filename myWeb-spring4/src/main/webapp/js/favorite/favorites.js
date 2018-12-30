@@ -63,12 +63,16 @@ $(document).ready(function() {
          for(var i = 0; i <websites.length; i++ ){
         	 var tr = $("<tr fid='" + websites[i].id + "'></tr>");
         	 var reg = new RegExp("\"","g");
+        	 var reg2 = new RegExp("<span style='color:red'>","g");
+        	 var reg3 = new RegExp("</span>","g");
         	 
         	 var td = $("<td></td>").html("<span>" + websites[i].webSiteName.replace(reg,'\'') + "</span>" + // 文字
-        	 		"<input type='text'  style='display: none; color: black' value=" + websites[i].webSiteName.replace(reg,'\'') + " />"); // 输入框
+        	 		"<input type='text'  style='display: none; color: black' value='" + websites[i].webSiteName.replace(reg,'\'').replace(reg2,"").replace(reg3,"") + "' >"); // 输入框
+        	 console.log(td.html());
         	 
-        	 var td2 = $('<td></td>').html("<a href='"+ websites[i].webSiteUrl.replace(reg,'\'') +"' target='_blank'>" +websites[i].webSiteUrl.replace(reg,'\'') + "</a>" +
-        	 		"<input type='text' style='display: none; color: black; width:80%' value="+ websites[i].webSiteUrl.replace(reg,'\'') + " />");
+        	 var td2 = $('<td></td>').html("<a href=//"+ websites[i].webSiteUrl.replace(reg,'\'') +" target='_blank'>" + websites[i].webSiteUrl.replace(reg,'\'') + "</a>" +
+        	 		"<input type='text' style='display: none; color: black; width:80%' value='"+ websites[i].webSiteUrl.replace(reg,'\'').replace(reg2,"").replace(reg3,"") + "' >");
+        	 console.log(td2.html());
         	 
         	 var td3 = $('<td></td>');
         	 var button1 = $("<span class='glyphicon glyphicon-edit'><a>编辑</a></span><span>|<span>");	

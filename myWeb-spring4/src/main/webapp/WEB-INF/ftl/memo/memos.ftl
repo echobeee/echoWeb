@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="zh">
 <head>
+	 <title>備忘錄</title>
+
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +70,11 @@
             
         </ul>
         <p style="padding-right: 37px;" class="navbar-text navbar-right"><a href="${request.contextPath}/user/logout.do">註銷</a></p>
-        
+        <#if (user)??>
+				 <p style="padding-right: 37px;" class="navbar-text navbar-right">${user.userNickname}</p>
+				    <#else>
+				   
+				</#if>
     </div>
     </div>
     </nav>
@@ -198,7 +204,7 @@
 
 	
 	<script type="text/javascript" src="${request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<script src="${request.contextPath}/js/memo/simplecalendar.js?v0.53" type="text/javascript"></script>
+	<script src="${request.contextPath}/js/memo/simplecalendar.js?v0.54" type="text/javascript"></script>
 
 <div style="text-align:center;margin:450px 0; font:normal 14px/24px 'MicroSoft YaHei';">
 </div>

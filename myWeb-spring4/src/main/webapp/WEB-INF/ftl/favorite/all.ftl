@@ -56,7 +56,7 @@
 
     
     <!-- 收藏夹js -->
-   <script src="${request.contextPath }/js/favorite/favorites.js?v1.42"></script>
+   <script src="${request.contextPath }/js/favorite/favorites.js?v1.44"></script>
     
   </head>
   
@@ -112,7 +112,11 @@
 		    </div>
 		
 		        <p style="padding-right: 37px;" class="navbar-text navbar-right"><a href="${request.contextPath}/user/logout.do">註銷</a></p>
-		        
+		        <#if (user)??>
+				 <p style="padding-right: 37px;" class="navbar-text navbar-right">${user.userNickname}</p>
+				    <#else>
+				   
+				</#if>
 		    </div>
 		    </div>
 		    </nav>   
