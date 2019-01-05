@@ -100,7 +100,7 @@
 				</#if>
 		           
 		             <div class="form-group gover_search_form clearfix" style="width: 70%; margin-left: 10%">
-		                <input type="text" class="form-control" placeholder="Search" id="condition" style="width: 100%;"> 
+		                <input type="text" class="form-control" placeholder="Search" id="condition" style="width: 100%;" autocomplete="off"> 
 		            </div>
 		            <button type="button" id="search" class="btn btn-default">搜索</button>
 		            <div class="search_suggest" id="suggest">

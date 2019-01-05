@@ -16,7 +16,7 @@
 	
 	
 <!-- 1.配置数据库相关参数   properties的属性：${url} -->
-	<context:property-placeholder location="classpath:config/db.properties, classpath:config/mail.properties" />
+	<context:property-placeholder location="classpath:config/db.properties, classpath:config/mail.properties" ignore-unresolvable="true"/>
 
 	<!-- 2.数据库连接池 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

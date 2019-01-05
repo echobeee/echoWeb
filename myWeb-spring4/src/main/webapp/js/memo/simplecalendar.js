@@ -196,7 +196,8 @@ var calendar = {
             // content
             $('#memoContent').val('');
             // date
-            $('#time').val('');
+            var d = new Date();
+            $('#time').val(d.getHours() + ":" +d.getMinutes());
 
             // title
             $('#myModalLabel').text('添加備忘錄');

@@ -66,7 +66,7 @@ $(function () {
         			}
         		}
         	});// end ajax
-        	
+        	$("#submitButton").removeAttr("disabled");
         }
     });
 });
