@@ -119,6 +119,15 @@
 		    <div>
 		        <ul class="nav navbar-nav">
 		            
+		            <li class="dropdown">
+		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                 慎思明辨    <b class="caret"></b>
+		                </a>
+		                <ul class="dropdown-menu">
+		                    <li><a href="${request.contextPath}/go/douyin/videos">TikTok</a></li>
+		                </ul>
+		            </li>
+		            
 		            <li class="active"><a href="">德才兼備</a></li>
 		            
 		            <li class="dropdown">

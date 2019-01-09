@@ -6,7 +6,6 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://fonts.useso.com/css?family=Lato:300,400,700">
 	
 	<!-- icon -->
     <link rel = "Shortcut Icon" href="${request.contextPath}/images/echoWeb.ico">
@@ -51,6 +50,16 @@
     </div>
     <div>
         <ul class="nav navbar-nav">
+        
+        	 <li class="dropdown">
+		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                 慎思明辨    <b class="caret"></b>
+		                </a>
+		                <ul class="dropdown-menu">
+		                    <li><a href="${request.contextPath}/go/douyin/videos">TikTok</a></li>
+		                </ul>
+		            </li>
+        
             <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">德才兼備<b class="caret"></b></a> 
              <ul class="dropdown-menu">
@@ -204,7 +213,7 @@
 
 	
 	<script type="text/javascript" src="${request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<script src="${request.contextPath}/js/memo/simplecalendar.js?v0.54" type="text/javascript"></script>
+	<script src="${request.contextPath}/js/memo/simplecalendar.js?v0.55" type="text/javascript"></script>
 
 <div style="text-align:center;margin:450px 0; font:normal 14px/24px 'MicroSoft YaHei';">
 </div>

@@ -57,15 +57,30 @@ public class EmailServiceImpl implements EmailService {
 				helper.setText(getMemoMailText(user, args[1], args[2]), true);
 			}
 			
+			String path = Thread.currentThread().getContextClassLoader()
+							.getResource("").getPath();
+			String pics = path.substring(0, path.indexOf("WEB-INF")) + "myWebPic/";
+			System.out.println(pics);
 			
-			// 添加内嵌文件，第1个参数为cid标识这个文件,第2个参数为资源
-			helper.addInline("email", new File("e:/myWebPic/mail.gif")); // 附件内容
-			helper.addInline("phone", new File("e:/myWebPic/phone.gif")); // 附件内容
-			helper.addInline("clock", new File("e:/myWebPic/clock.gif")); // 附件内容
-			helper.addInline("twitter", new File("e:/myWebPic/twti.gif")); // 附件内容
-			helper.addInline("facebook", new File("e:/myWebPic/facebook.gif")); // 附件内容
+			
+			try {
+				helper.addInline("email", new File(pics + "mail.gif")); // 附件内容
+				helper.addInline("phone", new File(pics + "phone.gif")); // 附件内容
+				helper.addInline("clock", new File(pics + "clock.gif")); // 附件内容
+				helper.addInline("twitter", new File(pics + "twti.gif")); // 附件内容
+				helper.addInline("facebook", new File(pics + "facebook.gif")); // 附件内容
+			} catch (Exception e) {
+				// 添加内嵌文件，第1个参数为cid标识这个文件,第2个参数为资源
+				helper.addInline("email", new File("e:/myWebPic/mail.gif")); // 附件内容
+				helper.addInline("phone", new File("e:/myWebPic/phone.gif")); // 附件内容
+				helper.addInline("clock", new File("e:/myWebPic/clock.gif")); // 附件内容
+				helper.addInline("twitter", new File("e:/myWebPic/twti.gif")); // 附件内容
+				helper.addInline("facebook", new File("e:/myWebPic/facebook.gif")); // 附件内容
+			}
+			
+			
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		}
 
 		mailSender.send(msg);

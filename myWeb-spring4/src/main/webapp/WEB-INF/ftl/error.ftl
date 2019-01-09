@@ -55,41 +55,51 @@
 	    }  
 	</script>  
     
-    <style type="text/css">
-    body {
-    	background-color:#f6f6f6;
-    }
+   <style type="text/css">
+	    body {
+	    	background-color:#f6f6f6;
+	    	color: darkblue;
+	    }
+	    .container {
+		    position: relative;
+		    left: 22%;
+		    top: 28%;
+		    width: 100%;
+    	}
+    	h1 {
+   		    top: 42%;
+		    left: 44%;
+		    position: fixed;
+		}
+
     </style>
     
   </head>
   
   <body >
-  <!-- 表单被嵌套在背景中 -->
-<div >
+
     <!--登陆-->
-    <div class="container" style="position: absolute; top:115px; left:355px;">
+    <div class="container">
         <#switch "${message}">
         <#case "noUser">
-            <h1 style="margin-bottom: 20px;left: 200px;position: relative;">Oops...没有该用户哦</h1>
+            <h1 >Oops...没有该用户哦</h1>
             <img src="${request.contextPath}/images/Oops.jpg"/>
             <#break>
         <#case "acitvated">
-            <h1 style="margin-bottom: 20px;left: 200px;position: relative;">该用户已经激活啦</h1>
+            <h1 >该用户已经激活啦</h1>
 		    <img src="${request.contextPath}/images/success.jpg"/>
             <#break>
          <#case "disabled">
-            <h1 style="margin-bottom: 20px;left: 200px;position: relative;">Oops~该链接已经失效</h1>
+            <h1 >Oops~该链接已经失效</h1>
             <img src="${request.contextPath}/images/Oops.jpg"/>
             <#break>
          <#case "incorrect">
-            <h1 style="margin-bottom: 20px;left: 200px;position: relative;">Oops~这个链接本客栈没有哟...</h1>
+            <h1 >Oops~这个链接本客栈没有哟...</h1>
             <img src="${request.contextPath}/images/404.jpg"/>
             <#break>
         </#switch>
        
     </div>
-</div>
-
 	</body>
 
 </html>

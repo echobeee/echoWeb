@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>收藏夾</title>
+    <title>首页</title>
 	
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="Register">
@@ -36,9 +36,7 @@
 	<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     
-     <!-- 下拉框样式 -->
-  	<link rel="stylesheet" href=" ${request.contextPath}/styles/search.css?v1.15"/>
-    
+     
      <!--使用JS获取项目根路径-->
     <script>
         var path = "";
@@ -52,17 +50,34 @@
         });
     </script>
     
-     
+    <style type="text/css">
+	body {
+		background-color: black;
+		color: white;
+		
+	}
+	.videos {
+		position: relative;
+		left: 40%;
+	}
 
-    
-    <!-- 收藏夹js -->
-   <script src="${request.contextPath }/js/favorite/favorites.js?v1.44"></script>
-    
+	.datas {
+		margin-left: 2%;
+		
+
+	}
+	.list-group-item {
+		background-color: black;
+		border: 1px solid black;
+		font-size: 14px;
+	}
+	</style>
+      
   </head>
   
   <body >
   <!-- 表单被嵌套在背景中 -->
-	<div id="particles-js">
+	<div >
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 		    <div class="container-fluid">
 		    <div class="navbar-header">
@@ -70,23 +85,17 @@
 		    </div>
 		    <div>
 		        <ul class="nav navbar-nav">
-		        
-		        	 <li class="dropdown">
-		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		                 慎思明辨    <b class="caret"></b>
-		                </a>
-		                <ul class="dropdown-menu">
-		                    <li><a href="${request.contextPath}/go/douyin/videos">TikTok</a></li>
-		                </ul>
-		            </li>
-		        
-		            <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">德才兼備<b class="caret"></b></a> 
-		             <ul class="dropdown-menu">
-		                    <li><a  href="${request.contextPath}/user/welcome.do">主頁</a></li>
-		                </ul>
 		            
-		            </li>
+		            
+		            <li class="active"><a href=""> 慎思明辨</a></li>
+		            
+		            <li class="dropdown">
+            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">德才兼備<b class="caret"></b></a> 
+             <ul class="dropdown-menu">
+                    <li><a  href="${request.contextPath }/user/welcome.do">主頁</a></li>
+                </ul>
+            
+            </li>
 		            
 		            <li class="dropdown">
 		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -96,31 +105,20 @@
 		                    <li><a href="${request.contextPath}/go/memo/memos">備忘錄</a></li>
 		                </ul>
 		            </li>
-		            <li class="active"><a href="${request.contextPath}/go/favorite/all">領袖氣質</a></li>
+		            <li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">領袖氣質<b class="caret"></b></a> 
+		             <ul class="dropdown-menu">
+		                    <li><a  href="${request.contextPath}/go/favorite/all">收藏夾</a></li>
+		                </ul>
+		            
+		            </li>
+		            
 		        </ul>
 		
 		        <div>
-		        <form class="navbar-form navbar-left" role="search" style="width: 50%;" onsubmit="return false;">
-		        <#if (user.userId)??>
-				 <input type="hidden" id="userId" value="${user.userId}"/>
-				    <#else>
-				   <script language="javascript" type="text/javascript"> 
-						 $(function () {location.reload();})
-					</script>
-				</#if>
-		           
-		             <div class="form-group gover_search_form clearfix" style="width: 70%; margin-left: 10%">
-		                <input type="text" class="form-control" placeholder="Search" id="condition" style="width: 100%;" autocomplete="off"> 
-		            </div>
-		            <button type="button" id="search" class="btn btn-default">搜索</button>
-		            <div class="search_suggest" id="suggest">
-		                    <ul class="suggest" id="suggestUl">
-								
-		                    </ul>
-		            </div>
-		        </form>
+		        
 		    </div>
-		
+				
 		        <p style="padding-right: 37px;" class="navbar-text navbar-right"><a href="${request.contextPath}/user/logout.do">註銷</a></p>
 		        <#if (user)??>
 				 <p style="padding-right: 37px;" class="navbar-text navbar-right">${user.userNickname}</p>
@@ -129,39 +127,41 @@
 				</#if>
 		    </div>
 		    </div>
-		    </nav>   
+		    </nav> 
 		    
-		      <a href="${request.contextPath}/go/favorite/add" id="addWe" class="glyphicon glyphicon-plus-sign btn-lg"></a>
-
-		    <div style="width:70%; margin-right: auto; margin-left: auto;">
-		       <table class="table table-light table-hover" >
-				    <thead>
-				      <tr class="table-info text-dark" style="background-color: #bcc8ee">
-				        <th>網站別名</th>
-				        <th>網址</th>
-				        <th>操作</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				    </tbody>
-		
-				</table>
-		        <div id="pageInfo">
-		        	<div style="float: right;" id="paging">
-		        	<a id="prev" class="myWebsites glyphicon glyphicon-chevron-left"></a>
-		        	<span id='page'></span>
-		        	<a id="next" class="myWebsites glyphicon glyphicon-chevron-right"></a>
-		        	</div>
-		        </div>
-		    </div>
-		</div>
+		    <h1 style="margin-bottom: 20px;left: 200px;position: relative;">TikTok Video</h1>
 			
+			<ul class="list-group">
+				
+				<#if videos??>
+					<#list videos as video> 
+						<#if video??>
+						<li class="list-group-item">
+						    <div class="videos">
+								<video width="25%" height="400" controls autoplay name="media">
+									<source src="${video.videoUrl}" type="video/mp4">
+								</video>
+								<div style="width:25%;">
+								<span class="glyphicon glyphicon-heart-empty">${video.digg_count}</span>
+								<span class="datas glyphicon glyphicon-share">${video.share_count}</span>
+								<span class="datas glyphicon glyphicon-comment">${video.comment_count}/span>
+								<span class="datas glyphicon glyphicon-expand">${video.forward_count}</span>
+								<p>${video.desc}</p>
+								<p style="float: right;margin-top: -15px">${video.nickname}</p>
+								</div>
+							</div>
+					    </li>
+					    </#if>>
+					</#list>
+				</#if> 
+			</ul>
+		
 	</div>
 
 
-		<!-- 背景JS -->
+		<!-- 背景JS 
 <script src="${request.contextPath}/js/background/particles.js"></script>
-<script src="${request.contextPath}/js/background/app.js"></script>
+<script src="${request.contextPath}/js/background/app.js"></script> --!>
 	</body>
 
 </html>

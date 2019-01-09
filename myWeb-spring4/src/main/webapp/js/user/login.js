@@ -35,7 +35,8 @@ $(function(){
 	                    } else {
 	                        // 登錄通過，返回上一鏈接
 	                    	// responseText 為  /myWeb/.....
-	                        window.location.href = path + responseText.substring(6);
+	                    	// second '/' index
+	                        window.location.href = path + responseText.substring(responseText.indexOf("/",responseText.indexOf("/")+1));
 	                    }
 
 	                    //只要错误了，就设置验证码为空，同时更新验证码

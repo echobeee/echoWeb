@@ -197,7 +197,15 @@ var calendar = {
             $('#memoContent').val('');
             // date
             var d = new Date();
-            $('#time').val(d.getHours() + ":" +d.getMinutes());
+            var h = d.getHours(), 
+            	m = d.getMinutes();
+            if(h < 10) {
+            	h = "0" + h;
+            }
+            if(m < 10) {
+            	m = "0" + m;
+            }
+            $('#time').val(h + ":" + m);
 
             // title
             $('#myModalLabel').text('添加備忘錄');

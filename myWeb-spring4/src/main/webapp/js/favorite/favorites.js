@@ -68,11 +68,14 @@ $(document).ready(function() {
         	 
         	 var td = $("<td></td>").html("<span>" + websites[i].webSiteName.replace(reg,'\'') + "</span>" + // 文字
         	 		"<input type='text'  style='display: none; color: black' value='" + websites[i].webSiteName.replace(reg,'\'').replace(reg2,"").replace(reg3,"") + "' >"); // 输入框
-        	 console.log(td.html());
         	 
-        	 var td2 = $('<td></td>').html("<a href=//"+ websites[i].webSiteUrl.replace(reg,'\'') +" target='_blank'>" + websites[i].webSiteUrl.replace(reg,'\'') + "</a>" +
-        	 		"<input type='text' style='display: none; color: black; width:80%' value='"+ websites[i].webSiteUrl.replace(reg,'\'').replace(reg2,"").replace(reg3,"") + "' >");
-        	 console.log(td2.html());
+        	 var url = websites[i].webSiteUrl.replace(reg,'\'').replace(reg2,"").replace(reg3,"");
+        	 var href;
+        	 if(url.indexOf("http") == -1) {
+        		 href = "https://" + url;
+        	 }
+        	 var td2 = $('<td></td>').html("<a href="+ href +" target='_blank'>" + websites[i].webSiteUrl.replace(reg,'\'') + "</a>" +
+        	 		"<input type='text' style='display: none; color: black; width:80%' value='"+ url + "' >");
         	 
         	 var td3 = $('<td></td>');
         	 var button1 = $("<span class='glyphicon glyphicon-edit'><a>编辑</a></span><span>|<span>");	

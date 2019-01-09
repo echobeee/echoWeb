@@ -45,9 +45,13 @@ a:focus, a:hover {
     text-align: justify;
     background-color: white;
     font-size: 16px;
-    padding: 14px 12px 8px 12px; // 边距
+    padding: 16px 12px 6px 12px; // 边距
     line-height: 1.42857143;
     display: none; 
+}
+
+.suggest>li {
+	margin-bottom : 4px;	
 }
 
 li:hover {

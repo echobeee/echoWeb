@@ -9,14 +9,29 @@
     
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 	 <style type="text/css">
-    body {
-    	background-color:#f6f6f6;
-    }
+	    body {
+	    	background-color:#f6f6f6;
+	    	color: darkblue;
+	    }
+	    .container {
+		    position: relative;
+		    left: 22%;
+		    top: 28%;
+		    width: 100%;
+    	}
+    	h1 {
+   		    top: 42%;
+		    left: 44%;
+		    position: fixed;
+		}
+
     </style>
   </head>
   
   <body>
+  <div class="container">
   	<h1>服务器好像出现了点状况...</h1>
     <img src="${request.contextPath}/images/Oops.jpg"/>
+    </div>
   </body>
 </html>

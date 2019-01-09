@@ -59,6 +59,10 @@ public class UserController extends BaseController {
 	// 链接失效
 	private static final String LINK_EXPIRED = "disabled";
 	
+	public String profileEdit(User user) {
+		
+		return null;
+	}
 	
 	/**
 	 * 用户进入的主页，在session中设置user
