@@ -76,7 +76,7 @@
 		                 慎思明辨    <b class="caret"></b>
 		                </a>
 		                <ul class="dropdown-menu">
-		                    <li><a href="${request.contextPath}/go/douyin/videos">TikTok</a></li>
+		                    <li><a href="${request.contextPath}/douyin/videos">TikTok</a></li>
 		                </ul>
 		            </li>
 		        

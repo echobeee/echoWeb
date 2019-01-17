@@ -125,8 +125,9 @@ public class Signature {
 	 * @return 文件路径
 	 */
 	public String connect(String params, String pathname) {
-//		File file = new File("E:/json.xml");
+
 		File file = new File(pathname);
+		
 		FileOutputStream fos = null;
 		
 		try {

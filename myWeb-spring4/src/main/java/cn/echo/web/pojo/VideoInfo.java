@@ -7,6 +7,28 @@ public class VideoInfo {
 	
 	String aweme_id;
 	
+	// 备用url;
+	String videoUrlBak;
+	
+	// 封面
+	String poster;
+	
+	public String getVideoUrlBak() {
+		return videoUrlBak;
+	}
+
+	public void setVideoUrlBak(String videoUrlBak) {
+		this.videoUrlBak = videoUrlBak;
+	}
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+
 	// 评论数
 	long comment_count;
 	

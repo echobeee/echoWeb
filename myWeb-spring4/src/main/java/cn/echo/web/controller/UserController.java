@@ -250,6 +250,8 @@ public class UserController extends BaseController {
 		session.setAttribute("captcha", captcha.text().toLowerCase());
 
 	}
+	
+	
 
 	/**
 	 * 忘记密码，则发送邮件到用户邮箱

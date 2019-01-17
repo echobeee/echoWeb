@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>首页</title>
+    <title>抖音</title>
 	
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="Register">
@@ -14,7 +14,7 @@
     <script src="${request.contextPath}/js/jquery-3.2.1.min.js"></script>
     
     <!-- 背景样式 -->
-    <link rel="stylesheet" media="screen" href="${request.contextPath}/styles/background.css">
+   <!-- <link rel="stylesheet" media="screen" href="${request.contextPath}/styles/background.css"> -->
     
       <!--弹出框-->
     <script src="${request.contextPath}/js/sweetalert.min.js"></script>
@@ -36,6 +36,7 @@
 	<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     
+    <link href="${request.contextPath}/styles/douyin/loading.css?v1.4" rel="stylesheet">
      
      <!--使用JS获取项目根路径-->
     <script>
@@ -50,12 +51,22 @@
         });
     </script>
     
+    <script src="${request.contextPath}/js/douyin/video.js?v1.15"></script>
+    
     <style type="text/css">
 	body {
 		background-color: black;
 		color: white;
 		
 	}
+	
+	h1 {
+		margin-bottom: 15px;
+		left: 44%;
+		position: relative;
+		color: #333;
+	}
+	
 	.videos {
 		position: relative;
 		left: 40%;
@@ -63,8 +74,9 @@
 
 	.datas {
 		margin-left: 2%;
-		
-
+	}
+	.datass {
+		margin-left: 10%;
 	}
 	.list-group-item {
 		background-color: black;
@@ -85,9 +97,8 @@
 		    </div>
 		    <div>
 		        <ul class="nav navbar-nav">
-		            
-		            
-		            <li class="active"><a href=""> 慎思明辨</a></li>
+
+		            <li class="active"><a href="">慎思明辨</a></li>
 		            
 		            <li class="dropdown">
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">德才兼備<b class="caret"></b></a> 
@@ -129,39 +140,81 @@
 		    </div>
 		    </nav> 
 		    
-		    <h1 style="margin-bottom: 20px;left: 200px;position: relative;">TikTok Video</h1>
+		    <h1>TikTok視頻</h1>
 			
 			<ul class="list-group">
 				
 				<#if videos??>
-					<#list videos as video> 
+				<#assign keys = videos?values>
+					<#list keys as video> 
 						<#if video??>
 						<li class="list-group-item">
 						    <div class="videos">
-								<video width="25%" height="400" controls autoplay name="media">
-									<source src="${video.videoUrl}" type="video/mp4">
+								<video width="25%" height="400" controls name="media" preload="none" poster="${video.poster}">
+									<source type="video/mp4" src="${request.contextPath}/douyin/getVideo/${video.aweme_id}"/>
+									您的浏览器不支持 video 标签。
 								</video>
 								<div style="width:25%;">
-								<span class="glyphicon glyphicon-heart-empty">${video.digg_count}</span>
-								<span class="datas glyphicon glyphicon-share">${video.share_count}</span>
-								<span class="datas glyphicon glyphicon-comment">${video.comment_count}/span>
-								<span class="datas glyphicon glyphicon-expand">${video.forward_count}</span>
-								<p>${video.desc}</p>
-								<p style="float: right;margin-top: -15px">${video.nickname}</p>
+								<span class="glyphicon glyphicon-heart" style="color: red">
+								<#if video.digg_count?length gt 5 >
+									${video.digg_count?number / 10000}w
+								<#else>
+									${video.digg_count}	
+								</#if>
+								</span>
+								<span class="datas glyphicon glyphicon-share" style="color: limegreen">
+								<#if video.share_count?length gt 5 >
+									${video.share_count?number / 10000}w
+								<#else>
+									${video.share_count}	
+								</#if>
+								</span>
+								<span class="datas glyphicon glyphicon-comment" style="color: #5bc0de">
+								<#if video.comment_count?length gt 5 >
+									${video.comment_count?number / 10000}w
+								<#else>
+									${video.comment_count}	
+								</#if>
+								</span>
+								<span class="datas glyphicon glyphicon-expand" style="color: khaki">
+								<#if video.forward_count?length gt 5 >
+									${video.forward_count?number / 10000}w
+								<#else>
+									${video.forward_count}	
+								</#if>
+								</span>
+								<p style="margin-top: 4px">${video.desc}</p>
+								<p style="float: right;margin-top: -12px">${video.nickname}</p>
 								</div>
 							</div>
 					    </li>
-					    </#if>>
+					    </#if>
 					</#list>
 				</#if> 
 			</ul>
 		
 	</div>
+	
+	<div id="fountainG">
+					<div style="position: relative; top:-2px; color:#0099cc">加载中</div>
+                    <div id="fountainG_1" class="fountainG">
+                    </div>
+                    <div id="fountainG_2" class="fountainG">
+                    </div>
+                    <div id="fountainG_3" class="fountainG">
+                    </div>
+                    <div id="fountainG_4" class="fountainG">
+                    </div>
+                    <div id="fountainG_5" class="fountainG">
+                    </div>
+                    <div id="fountainG_6" class="fountainG">
+                    </div>
+                    <div id="fountainG_7" class="fountainG">
+                    </div>
+                    <div id="fountainG_8" class="fountainG">
+                    </div>
+	</div>
 
-
-		<!-- 背景JS 
-<script src="${request.contextPath}/js/background/particles.js"></script>
-<script src="${request.contextPath}/js/background/app.js"></script> --!>
 	</body>
 
 </html>
