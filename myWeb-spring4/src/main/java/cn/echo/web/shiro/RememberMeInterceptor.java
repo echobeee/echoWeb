@@ -37,9 +37,14 @@ public class RememberMeInterceptor implements HandlerInterceptor {
 		
 		// 判断是不是通过记住我登录
 		if( !user.isAuthenticated() && user.isRemembered()) {
+			
+			logger.debug("Tick remembered me before, put user [" + ((ActiveUser)user.getPrincipal()).getUserId() + "] in session");
+			
 			user.getSession().setAttribute("user", user.getPrincipal());
 			
 		}
+		
+		// execution chain keep dealing with request & response 
 		return true;
 	}
 

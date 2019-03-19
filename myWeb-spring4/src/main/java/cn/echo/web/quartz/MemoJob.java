@@ -3,6 +3,7 @@ package cn.echo.web.quartz;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.apache.tools.ant.types.resources.comparators.Date;
 import org.hibernate.validator.constraints.Email;
 import org.quartz.DisallowConcurrentExecution;
@@ -32,6 +33,8 @@ public class MemoJob implements Job {
 	@Autowired
 	private UserService userService;
 	
+	private final Logger logger = Logger.getLogger(MemoJob.class);
+	
 	/*
 	 * 定时器执行任务
 	 */
@@ -48,7 +51,8 @@ public class MemoJob implements Job {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		// 发送邮件通知备忘
 		emailService.sendEmail(userService.selectByPrimaryKey(memo.getUserId()), "memo", sdf.format(memo.getEditTime()), memo.getMemoContent());
-		System.out.println(memo.getMemoContent() + " 时间： " + new Date());
+		
+		logger.debug("memoId is [" + memo.getMemoId() + "], user id is [" + memo.getUserId() + "] memo has been sent in " + sdf.format(new java.util.Date()));
 		
 		// 设置为已发送邮件的状态
 		memo.setState(1);

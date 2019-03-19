@@ -26,6 +26,10 @@ public class ActiveUser implements Serializable{
 		public void setUserNickname(String userNickname) {
 			this.userNickname = userNickname;
 		}
+		@Override
+		public String toString() {
+			return "ActiveUser [userId=" + userId + ", userNickname=" + userNickname + ", userEmail=" + userEmail + "]";
+		}
 		public String getUserEmail() {
 			return userEmail;
 		}

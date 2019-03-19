@@ -36,6 +36,8 @@
 				<!-- 退出拦截，请求logout.action执行退出操作
 					然后就不需要在controller中写logout了	 -->
 				/user/logout.do = logout
+				
+				/user/welcome.do = user
 			
 				/user/** = anon
 

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -59,6 +60,8 @@ public class UserController extends BaseController {
 	// 链接失效
 	private static final String LINK_EXPIRED = "disabled";
 	
+	private final Logger logger = Logger.getLogger(UserController.class);
+	
 	public String profileEdit(User user) {
 		
 		return null;
@@ -98,6 +101,9 @@ public class UserController extends BaseController {
 			// 若出现校验错误，跳转到注册页面
 			return "/user/register";
 		}
+		
+		logger.debug("Register user: " + user);
+		
 		// 没有出现错误，则对密码进行加密
 		User encryptdUser = userService.encryptPassword(user);
 
@@ -160,19 +166,32 @@ public class UserController extends BaseController {
 	public String ajaxCheck(
 			@RequestParam(required = false, defaultValue = "1") String userId,
 			@RequestParam(required = false, defaultValue = "1") String userEmail) {
-		User user = null;
+			User user = null;
+			
 			user = userService.validateEmailExist(userEmail);
+			
+			logger.debug("userId = [" + userId + "] + userEmail = [" + userEmail + "]");
+			
+			
 			/**
 			 * 若未激活，则重新注册
 			 */
 			if (user != null && user.getActiState().equals(1)) {
+				
 				return "email";
 			}
 
+			/*
+			 * id已使用且已被激活 
+			 */
 			user = userService.selectByPrimaryKey(userId);
 			if (user != null && user.getActiState().equals(1)) {
 				return "UserID";
 			}
+			
+			/*
+			 * 存在未激活的此id用户
+			 */
 			if(user != null) {
 				userService.deleteByPrimaryKey(user.getUserId());
 			}	

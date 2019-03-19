@@ -28,13 +28,17 @@ public class EsClientBuilder {
 	
 	// 连接的elasticsearch集群地址
 	public final static String host = "127.0.0.1";
+	
 	// 集群名字
+	
 	public final static String clusterName = "my-application";
 	// 端口号 默认9300
 	public final static int PORT = 9300;
 	
 	private static TransportClient client = null;
 	private static Settings settings = Settings.builder().put("client.transport.sniff", true).put("cluster.name", clusterName).build();
+	
+	// 批量提交
 	private static BulkProcessor staticBulkProcessor = null;
 	private static int clients = 0;
 	
@@ -48,6 +52,7 @@ public class EsClientBuilder {
 			return cli;
 
 			try {
+				// 获取client实例
 				client = new PreBuiltTransportClient(settings)
 						.addTransportAddress(new TransportAddress(InetAddress.getByName(host), PORT));
 			} catch (Exception e) {

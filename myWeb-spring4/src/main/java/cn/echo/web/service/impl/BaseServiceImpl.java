@@ -83,7 +83,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	@Override
 	public long countAll() {
 		// TODO Auto-generated method stub
-		return 0;
+		return baseMapper.countAll();
 	}
 
 

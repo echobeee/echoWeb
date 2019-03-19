@@ -49,21 +49,23 @@ public class EmailServiceImpl implements EmailService {
 			helper.setSubject(MimeUtility.encodeText("一封来自echoWeb的邮件", "utf-8",
 					"B"));
 			
-			if(args[0].equals("active")) {
+			if(args[0].equals("active")) { // 激活邮件
 				helper.setText(getActiveMailText(user), true);
-			} else if(args[0].equals("reset")) {
+			} else if(args[0].equals("reset")) { // 重设密码邮件
 				helper.setText(getForgetPasswordMailText(user), true);
-			} else if(args[0].equals("memo")) {
+			} else if(args[0].equals("memo")) {  // 发送备忘录
 				helper.setText(getMemoMailText(user, args[1], args[2]), true);
 			}
 			
 			String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath();
+			// 图片的文件路径，在linux中以此路径
 			String pics = path.substring(0, path.indexOf("WEB-INF")) + "myWebPic/";
 			System.out.println(pics);
 			
 			
 			try {
+				// 添加内嵌文件，第1个参数为cid标识这个文件,第2个参数为资源
 				helper.addInline("email", new File(pics + "mail.gif")); // 附件内容
 				helper.addInline("phone", new File(pics + "phone.gif")); // 附件内容
 				helper.addInline("clock", new File(pics + "clock.gif")); // 附件内容
@@ -85,7 +87,7 @@ public class EmailServiceImpl implements EmailService {
 
 		mailSender.send(msg);
 
-		System.out.println("邮件发送成功！");
+		System.out.println(args[0] + "邮件发送成功！");
 	}
 
 	/**
@@ -100,6 +102,7 @@ public class EmailServiceImpl implements EmailService {
 		user.setActiCode(UUID.randomUUID().toString());
 		user.setActiState(0);
 		user.setTokenExptime(new Date());
+		
 		// 获得freemarker邮件模版
 		Template template = freeMarkerConfigurer.getConfiguration()
 				.getTemplate("user/activeMail.ftl");
@@ -107,6 +110,7 @@ public class EmailServiceImpl implements EmailService {
 		// Freemarker通过map传user参数
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("user", user);
+		
 		String activeUrl = "localhost:8080/myWeb/user/activate?active="
 				+ user.getActiCode() + "&id=" + user.getUserId();
 		map.put("activeUrl", activeUrl);
@@ -134,6 +138,9 @@ public class EmailServiceImpl implements EmailService {
 	 * @throws Exception
 	 */
 	private String getForgetPasswordMailText(User user) throws Exception {
+		
+		String localhost = "localhost:8080";
+		
 		// 获得freemarker邮件模版
 		Template template = freeMarkerConfigurer.getConfiguration()
 				.getTemplate("user/activeMail.ftl");
@@ -143,7 +150,7 @@ public class EmailServiceImpl implements EmailService {
 		map.put("user", user);
 		
 		// 重设码为原密码的md5一次循环
-		String activeUrl = "localhost:8080/myWeb/user/reset?reset="
+		String activeUrl = localhost + "/myWeb/user/reset?reset="
 				+ new Md5Hash(user.getUserPassword()).toString() + "&id="
 				+ user.getUserId();
 		map.put("activeUrl", activeUrl);

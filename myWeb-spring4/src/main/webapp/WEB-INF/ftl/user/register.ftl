@@ -54,13 +54,13 @@
        <div class="form-group form row">
 		    <label for="firstname" class="col-sm-2 control-label">用户账号：</label>
 		    <div class="col-sm-3">
-		      <input type="text"  class="form-control col-lg-3" name="userId" placeholder="用户账号用于登录">
+		      <input type="text"  class="form-control col-lg-3" id="userId" name="userId" placeholder="用户账号用于登录">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="firstname" class="col-sm-2 control-label">昵称：</label>
 		    <div class="col-sm-3">
-		      <input type="text"  class="form-control col-lg-3" name="userNickname" placeholder="请输入昵称">
+		      <input type="text"  class="form-control col-lg-3" id="userNickname" name="userNickname" placeholder="请输入昵称">
 		    </div>
 		  </div>
 		  <div class="form-group">

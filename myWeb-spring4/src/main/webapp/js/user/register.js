@@ -96,7 +96,7 @@ $(function () {
                     	
                         validator.defaultSubmit();
                         sweetAlert("注册成功!请到您指定的邮箱完成激活");
-                        windows.location.href = path;
+                        window.location.href = path;
                     } else if(responseText == "UserID") {
                         sweetAlert("该用户账号已被使用");
                     } else if(responseText == "email") {
